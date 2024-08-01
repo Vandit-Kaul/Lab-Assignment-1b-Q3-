@@ -1,45 +1,37 @@
 #include <stdio.h>
 
-int main()
-{
-    int m, n;
-    printf("Enter value of m:");
-    printf("\n");
-    scanf("%d", &m);
-    printf("Enter value of n:");
-    printf("\n");
+int main() {
+    int n;
+    printf("Enter the value of n: ");
     scanf("%d", &n);
 
-    int arr[m][n];
-    printf("Enter value in matrix:");
-    for (int i = 0; i < m; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            scanf("%d", &arr[i][j]);
+    char arr[n];
+    int alpha[52] = {0}; 
+    
+    printf("Enter %d characters:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf(" %c", &arr[i]);
+    }
+
+    for (int i = 0; i < n; i++) {
+        if (arr[i] >= 'a' && arr[i] <= 'z') {
+            alpha[arr[i] - 'a']++; 
+        } else if (arr[i] >= 'A' && arr[i] <= 'Z') {
+            alpha[arr[i] - 'A' + 26]++; 
         }
     }
 
-    int transpose[m][n];
+    char find;
+    printf("Enter a character to find its frequency: ");
+    scanf(" %c", &find); 
 
-    for (int i = 0; i < m; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            transpose[j][i] = arr[i][j];
-        }
+    if (find >= 'a' && find <= 'z') {
+        printf("The frequency of the character '%c' is: %d\n", find, alpha[find - 'a']);
+    } else if (find >= 'A' && find <= 'Z') {
+        printf("The frequency of the character '%c' is: %d\n", find, alpha[find - 'A' + 26]);
+    } else {
+        printf("The character '%c' is not a valid letter.\n", find);
     }
 
-    printf("The transposed array is:");
-    printf("\n");
-
-    for (int i = 0; i < m; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            printf("%d ", transpose[i][j]);
-            ;
-        }
-        printf("\n");
-    }
+    return 0;
 }
